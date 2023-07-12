@@ -49,17 +49,17 @@ class Compte {
         $this->nomCompte = $nomCompte;
     }
 
-    public function deposer($montant) {
+    public function crediter($montant) {
         $this->solde += $montant;
     }
 
-    public function retirer($montant) {
+    public function debiter($montant) {
         $this->solde -= $montant;
     }
 
     public function virement(Compte $destinataire, $montant) {
-        $this->retirer($montant);
-        $destinataire->deposer($montant);
+        $this->debiter($montant);
+        $destinataire->crediter($montant);
     }
 
 }

@@ -58,14 +58,14 @@ require 'titulaire.php';
     // Dépôt
     echo  "<b>Dépôt : </b>". "<br />"."<br />";
     echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
-    $compteCourant->deposer(50);
+    $compteCourant->crediter(50);
     echo "Nouveau solde après dépôt: ". $compteCourant->getSolde()
 . " ".$compteLivretA->getDevise(). "<br />"."<br />";
 
     // Retrait
     echo  "<b>Retrait : </b>". "<br />"."<br />";
     echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
-    $compteCourant->retirer(15);
+    $compteCourant->debiter(15);
     echo "Nouveau solde après dépôt: ". $compteCourant->getSolde()
     . " ".$compteLivretA->getDevise(). "<br />"."<br />";
 
