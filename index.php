@@ -1,5 +1,5 @@
 <?php
-// Faire appel aux infos présentes dans les autres fichiers
+// Faire appel aux classes Compte et Titulaire
 require 'Compte.php';
 require 'Titulaire.php';
 
@@ -15,6 +15,7 @@ require 'Titulaire.php';
         <title>Banque</title>
     </head>
     <body>
+        <h1>Banque</h1>
 
     <!-- http://localhost/LENOIR-Maurane/POO_Banque/index.php -->
 
@@ -26,38 +27,24 @@ require 'Titulaire.php';
 
     // Accéder aux informations du titulaire
     echo "Nom : ". $titulaire->getNom(). "<br>". "Prénom : ". $titulaire->getPrenom(). "<br>". "Date de naissance : ". $titulaire->getDateDeNaissance(). "<br>". "Ville : ". $titulaire->getVille(). "<br /><br />";
-    // echo "Prénom : ". $titulaire->getPrenom(). "<br>";
-    // echo "Date de naissance : ". $titulaire->getDateDeNaissance(). "<br>";
-    // echo "Ville : ". $titulaire->getVille(). "<br />"."<br />";
-
-    // Age du titulaire
-    $dateDeNaissance = new DateTime('15-06-1979');
-    $dateActuelle = new DateTime();
-    // $difference = date_diff($dateDeNaissance, $dateActuelle);
-    // echo "Age du titulaire : ". $difference->y ." ans". "<br />"."<br />";
+   
+    ?>
+    <h2>Listes des comptes</h2>
+    <?php
 
     // Ajouter un compte courant
-    $compteCourant = new Compte("453695526959", 2500, "EUR", "Compte Courant", $titulaire);
-    $titulaire->ajouterCompte($compteCourant);
+    $compteCourant = new Compte("4536955269591", 2500, "EUR", "Compte Courant", $titulaire);
 
     // Ajouter un compte Livret A
     $compteLivretA = new Compte("6437179155247", 10693, "EUR", "Livret A", $titulaire);
-    $titulaire->ajouterCompte($compteLivretA);
-
 
     // Accéder à la liste des comptes
-    // echo  "<b>Comptes du titulaire : </b>". "<br />"."<br />";
-    // $comptes = $titulaire->getComptes();
+    $titulaire->afficherComptesTitulaire();
+    echo "<br>";
 
-    // echo "Nom du compte : ". $compteCourant->getNomCompte(). "<br>";
-    // echo "Numéro de compte : ". $compteCourant->getNumero(). "<br>";
-    // echo "Solde : ". $compteCourant->getSolde(). " ". $compteCourant->getDevise(). "<br />"."<br />";
-    
-    // echo "Nom du compte : ". $compteLivretA->getNomCompte(). "<br>";
-    // echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
-    // echo "Solde : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br />"."<br />";
-
-    // OPERATIONS :
+    ?>
+    <h2>Opérations</h2>
+    <?php
 
     // Dépôt
     echo  "<b>Dépôt : </b>". "<br />"."<br />";
@@ -74,13 +61,16 @@ require 'Titulaire.php';
     . " ".$compteLivretA->getDevise(). "<br />"."<br />";
 
     // Virement
+        // Solde avant virement : 
     echo  "<b>Solde avant le virement : </b>". "<br />"."<br />";
     echo "Compte courant : ". $compteCourant->getSolde()
 . " ". $compteCourant->getDevise(). "<br>";
     echo "Livret A : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br />"."<br />";
 
+    // Virement de 1000 €
     $compteCourant->virement($compteLivretA, 1000). "<br />"."<br />";
 
+    // Solde APRES virement : 
     echo  "<b>Solde après le virement : </b>". "<br />"."<br />";
     echo "Compte courant : ". $compteCourant->getSolde()
 . " ". $compteCourant->getDevise(). "<br>";

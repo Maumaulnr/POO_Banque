@@ -95,7 +95,7 @@ class Compte {
     // __toString
     // Retourne toutes les infos du compte
     public function __toString() : string {
-        return $this->getNumero();
+        return $this->getNomCompte(). " : ". $this->getNumero(). "<br>". "Solde : ". $this->getSolde(). " ". $this->getDevise();
     }
 }
 

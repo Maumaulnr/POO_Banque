@@ -6,7 +6,7 @@
 class Titulaire {
 
     //definition 
-    //typoage strinf int bool ...
+    //typage string int bool ...
     private string $nom;
     private string $prenom;
     private DateTime $dateDeNaissance;
@@ -81,23 +81,24 @@ class Titulaire {
 
     //function afficher les comptes du titulaire
     public function afficherComptesTitulaire() {
-        echo "Les comptes de ". $this->nom. " ". $this->prenom.  "sont : <br>";
+        echo "<b>Les comptes de ". $this->nom. " ". $this->prenom.  " sont : </b><br>";
 
         foreach ($this->comptes as $compte) {
-            echo $compte;
+            echo $compte. "<br>";
         }
     }
 
     // faire une function calculer age
     public function calculerAge() {
         $dateActuelle = new DateTime();
+        $dateDeNaissance = $this->dateDeNaissance;
         $difference = date_diff($dateDeNaissance, $dateActuelle);
-        echo "Age du titulaire : ". $difference->Y ." ans". "<br />"."<br />";
+        return $difference->y;
     }
 
     //function __toString et a quoi elle sert
     public function __toString() {
-        return $this->getNom(). " ". $this->getPrenom(). " ". $this->getDateDeNaissance(). " ". $this->getVille(). "<br><br>";
+        return "Aujourd'hui". $this->getNom(). " ". $this->getPrenom(). " ". $this->calculerAge(). " ". $this->getVille(). "<br><br>";
     }
 }
 
