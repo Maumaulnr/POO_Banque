@@ -11,9 +11,10 @@ class Titulaire {
     private string $prenom;
     private DateTime $dateDeNaissance;
     private string $ville;
+    // Tableau vide qui contiendra le(s) compte(s)
     private array $comptes;
 
-    //typage
+    // Constructeur
     public function __construct(string $nom, string $prenom, string $dateDeNaissance, string $ville) {
         $this->nom = $nom;
         $this->prenom = $prenom;
@@ -71,6 +72,8 @@ class Titulaire {
         $this->comptes = $comptes;
     }
 
+    // AFFICHER LES INFORMATIONS
+
     // ajouter compte
     public function ajouterCompte(Compte $compte) {
         $this->comptes[] = $compte;
@@ -78,19 +81,23 @@ class Titulaire {
 
     //function afficher les comptes du titulaire
     public function afficherComptesTitulaire() {
-        echo "Les comptes du titulaires sont : ". $this. "<br>";
-    }
+        echo "Les comptes de ". $this->nom. " ". $this->prenom.  "sont : <br>";
 
+        foreach ($this->comptes as $compte) {
+            echo $compte;
+        }
+    }
 
     // faire une function calculer age
     public function calculerAge() {
+        $dateActuelle = new DateTime();
         $difference = date_diff($dateDeNaissance, $dateActuelle);
-        echo "Age du titulaire : ". $difference->y ." ans". "<br />"."<br />";
+        echo "Age du titulaire : ". $difference->Y ." ans". "<br />"."<br />";
     }
 
     //function __toString et a quoi elle sert
     public function __toString() {
-        return $this->getNom(). " ". $this->getPrenom(). " ". $this->getDateDeNaissance(). " ". $this->getVille. "<br><br>";
+        return $this->getNom(). " ". $this->getPrenom(). " ". $this->getDateDeNaissance(). " ". $this->getVille(). "<br><br>";
     }
 }
 

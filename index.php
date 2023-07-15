@@ -1,7 +1,7 @@
 <?php
 // Faire appel aux infos présentes dans les autres fichiers
-require 'compte.php';
-require 'titulaire.php';
+require 'Compte.php';
+require 'Titulaire.php';
 
 ?>
 
@@ -15,6 +15,8 @@ require 'titulaire.php';
         <title>Banque</title>
     </head>
     <body>
+
+    <!-- http://localhost/LENOIR-Maurane/POO_Banque/index.php -->
 
     <?php
 
@@ -35,52 +37,54 @@ require 'titulaire.php';
     // echo "Age du titulaire : ". $difference->y ." ans". "<br />"."<br />";
 
     // Ajouter un compte courant
-    $compteCourant = new Compte("453695526959", 2500, "EUR", "Compte Courant");
+    $compteCourant = new Compte("453695526959", 2500, "EUR", "Compte Courant", $titulaire);
     $titulaire->ajouterCompte($compteCourant);
 
     // Ajouter un compte Livret A
-    $compteLivretA = new Compte("6437179155247", 10693, "EUR", "Livret A");
+    $compteLivretA = new Compte("6437179155247", 10693, "EUR", "Livret A", $titulaire);
     $titulaire->ajouterCompte($compteLivretA);
 
 
     // Accéder à la liste des comptes
-    echo  "<b>Comptes du titulaire : </b>". "<br />"."<br />";
-    $comptes = $titulaire->getComptes();
+    // echo  "<b>Comptes du titulaire : </b>". "<br />"."<br />";
+    // $comptes = $titulaire->getComptes();
 
     // echo "Nom du compte : ". $compteCourant->getNomCompte(). "<br>";
-    echo "Numéro de compte : ". $compteCourant->getNumero(). "<br>";
-    echo "Solde : ". $compteCourant->getSolde(). " ". $compteCourant->getDevise(). "<br />"."<br />";
+    // echo "Numéro de compte : ". $compteCourant->getNumero(). "<br>";
+    // echo "Solde : ". $compteCourant->getSolde(). " ". $compteCourant->getDevise(). "<br />"."<br />";
     
     // echo "Nom du compte : ". $compteLivretA->getNomCompte(). "<br>";
     // echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
     // echo "Solde : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br />"."<br />";
 
+    // OPERATIONS :
+
     // Dépôt
-//     echo  "<b>Dépôt : </b>". "<br />"."<br />";
-//     echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
-//     $compteCourant->crediter(50);
-//     echo "Nouveau solde après dépôt: ". $compteCourant->getSolde()
-// . " ".$compteLivretA->getDevise(). "<br />"."<br />";
+    echo  "<b>Dépôt : </b>". "<br />"."<br />";
+    echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
+    $compteCourant->crediter(50);
+    echo "Nouveau solde après dépôt: ". $compteCourant->getSolde()
+. " ".$compteLivretA->getDevise(). "<br />"."<br />";
 
     // Retrait
-    // echo  "<b>Retrait : </b>". "<br />"."<br />";
-    // echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
-    // $compteCourant->debiter(15);
-    // echo "Nouveau solde après dépôt: ". $compteCourant->getSolde()
-    // . " ".$compteLivretA->getDevise(). "<br />"."<br />";
+    echo  "<b>Retrait : </b>". "<br />"."<br />";
+    echo "Numéro de compte : ". $compteLivretA->getNumero(). "<br>";
+    $compteCourant->debiter(15);
+    echo "Nouveau solde après dépôt: ". $compteCourant->getSolde()
+    . " ".$compteLivretA->getDevise(). "<br />"."<br />";
 
     // Virement
-//     echo  "<b>Solde avant le virement : </b>". "<br />"."<br />";
-//     echo "Compte courant : ". $compteCourant->getSolde()
-// . " ". $compteCourant->getDevise(). "<br>";
-//     echo "Livret A : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br />"."<br />";
+    echo  "<b>Solde avant le virement : </b>". "<br />"."<br />";
+    echo "Compte courant : ". $compteCourant->getSolde()
+. " ". $compteCourant->getDevise(). "<br>";
+    echo "Livret A : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br />"."<br />";
 
-//     $compteCourant->virement($compteLivretA, 1000). "<br />"."<br />";
+    $compteCourant->virement($compteLivretA, 1000). "<br />"."<br />";
 
-//     echo  "<b>Solde après le virement : </b>". "<br />"."<br />";
-//     echo "Compte courant : ". $compteCourant->getSolde()
-// . " ". $compteCourant->getDevise(). "<br>";
-//     echo "Livret A : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br>";
+    echo  "<b>Solde après le virement : </b>". "<br />"."<br />";
+    echo "Compte courant : ". $compteCourant->getSolde()
+. " ". $compteCourant->getDevise(). "<br>";
+    echo "Livret A : ". $compteLivretA->getSolde(). " ". $compteLivretA->getDevise(). "<br>";
 
     ?>
         

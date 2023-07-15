@@ -14,14 +14,16 @@ class Compte {
     private Titulaire $titulaire;
 
 
-    //
-    public function __construct(int $numero, float $solde, string $devise, string $nomCompte) {
+    // constructeur
+    public function __construct(int $numero, float $solde, string $devise, string $nomCompte, Titulaire $titulaire) {
         $this->numero = $numero;
         $this->solde = $solde;
         $this->devise = $devise;
         $this->nomCompte = $nomCompte;
+        $this->titulaire = $titulaire;
+
         //recuperer la methode du titulaire
-        // $titulaire->ajouterTitulaire($this);
+        $titulaire->ajouterCompte($this);
     }
 
     // Numéro de compte
@@ -91,8 +93,9 @@ class Compte {
     }
 
     // __toString
+    // Retourne toutes les infos du compte
     public function __toString() : string {
-        return $this->getNumero(). " ". $this->getSolde. " ". $this->getDevise. " ". $this->getNomCompte. "<br><br>";
+        return $this->getNumero();
     }
 }
 
